@@ -5,7 +5,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var peopleRouter = require('./routes/people');
 
 // Database connection
 var db = require('./db/db');
@@ -26,9 +25,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORS
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
+
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
-app.use('/people', peopleRouter);
+app.use('/users', usersRouter);
 
 app.use(function (err, req, res, next) {
     console.error(err.stack);
