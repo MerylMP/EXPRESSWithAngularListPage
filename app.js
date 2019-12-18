@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 app.use(function (err, req, res, next) {
     console.error(err.stack);

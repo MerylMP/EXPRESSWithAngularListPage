@@ -18,7 +18,7 @@ const valid_user = [
     .isInt({ gt: -1, lt: 126 }),
 
   check('dni', 'Error de DNI')
-    .matches(/^[a-zA-Z0-9]{9}$/),
+    .matches(/^[0-9]{8}[A-Za-z]{1}$/),
 
   check('dateOfBirth', 'Error de fecha de cumpleaños. Formato válido: YYYY-MM-DD')
     .isISO8601(),
@@ -37,7 +37,7 @@ router.post('/', valid_user, users_controller.users_create);
 
 // READ all users / user
 router.get('/', users_controller.users_list);
-router.get('/users/:id', users_controller.getUserById);
+router.get('/:id', users_controller.getUserById);
 
 // UPDATE user
 router.put('/:id', valid_user, users_controller.users_update_one);

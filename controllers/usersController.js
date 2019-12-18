@@ -58,6 +58,7 @@ module.exports.users_create = function (req, res, next) {
     user.dateOfBirth = req.body.dateOfBirth;
     user.favouriteColour = req.body.favouriteColour;
     user.gender = req.body.gender;
+    user.notes = req.body.notes;
 
     if (db.get() === null) {
         next(new Error('La conexión no está establecida'));
@@ -93,7 +94,8 @@ module.exports.users_update_one = function (req, res, next) {
             dni: req.body.dni,
             dateOfBirth: req.body.dateOfBirth,
             favouriteColour: req.body.favouriteColour,
-            gender: req.body.gender
+            gender: req.body.gender,
+            notes: req.body.notes
         }
     };
 
