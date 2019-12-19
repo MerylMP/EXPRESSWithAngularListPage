@@ -16,7 +16,7 @@ const valid_user = [
 
   check('age', 'Error de edad')
     .isInt({ gt: -1, lt: 126 }),
-
+    
   check('dni', 'Error de DNI')
     .matches(/^[0-9]{8}[A-Za-z]{1}$/),
 

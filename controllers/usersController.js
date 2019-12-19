@@ -79,6 +79,13 @@ module.exports.users_create = function (req, res, next) {
 
 // Update user
 module.exports.users_update_one = function (req, res, next) {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({
+            errors: errors.array()
+        });
+    }
 
     if (db.get() === null) {
         next(new Error('La conexión no está establecida'));
